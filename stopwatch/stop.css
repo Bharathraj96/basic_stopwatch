@@ -1,0 +1,174 @@
+:root {
+    /* Define a color palette for easier management */
+    --primary-bg: #1a2a40; /* Dark blue/purple */
+    --secondary-bg: #283a54; /* Slightly lighter blue/purple for containers */
+    --text-color: #e0e0e0; /* Off-white for general text */
+    --accent-color-light: #8be9fd; /* Light blue/cyan for accents */
+    --accent-color-medium: #50fa7b; /* Green for success/start */
+    --accent-color-dark: #ff79c6; /* Pink for highlights */
+    --button-bg-start: #50fa7b; /* Green for Start */
+    --button-hover-start: #44dd6c;
+    --button-bg-pause: #f1fa8c; /* Yellow for Pause */
+    --button-hover-pause: #e0e97d;
+    --button-bg-reset: #ff5555; /* Red for Reset */
+    --button-hover-reset: #e64d4d;
+    --button-bg-lap: #bd93f9; /* Purple for Lap */
+    --button-hover-lap: #a788dc;
+    --disabled-bg: #4a5a70; /* Muted background for disabled buttons */
+    --disabled-text: #9faab8; /* Muted text for disabled buttons */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, #6bf5fa, #064e92);
+    color: var(--text-color);
+    margin: 0;
+    overflow: hidden; /* Prevent scrollbars from subtle translateY */
+}
+
+.stopwatch-container {
+    background-color: var(--secondary-bg);
+    padding: 35px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    border: 2px solid var(--accent-color-dark); /* Accent border */
+}
+
+h1 {
+    color: var(--accent-color-light);
+    margin-bottom: 25px;
+    font-size: 2.5em;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.display {
+    font-family: 'Orbitron', monospace; /* More techy font */
+    font-size: 3.8em; /* Larger display */
+    margin-bottom: 35px;
+    background-color: rgba(0, 0, 0, 0.3); /* Slightly transparent dark background */
+    padding: 20px 30px;
+    border-radius: 10px;
+    display: inline-block;
+    color: var(--accent-color-medium); /* Bright green time */
+    border: 1px solid var(--accent-color-medium); /* Matching border */
+    box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.3); /* Inner glow effect */
+}
+
+.controls button {
+    border: none;
+    padding: 15px 30px; /* Larger buttons */
+    margin: 8px;
+    border-radius: 8px; /* More rounded corners */
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.15s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Button shadow */
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 0.5px;
+}
+
+/* Specific button colors */
+#startButton {
+    background-color: var(--button-bg-start);
+    color: var(--primary-bg);
+}
+#startButton:hover:enabled {
+    background-color: var(--button-hover-start);
+    transform: translateY(-3px);
+}
+
+#pauseButton {
+    background-color: var(--button-bg-pause);
+    color: var(--primary-bg);
+}
+#pauseButton:hover:enabled {
+    background-color: var(--button-hover-pause);
+    transform: translateY(-3px);
+}
+
+#resetButton {
+    background-color: var(--button-bg-reset);
+    color: var(--text-color); /* Red button with white text */
+}
+#resetButton:hover:enabled {
+    background-color: var(--button-hover-reset);
+    transform: translateY(-3px);
+}
+
+#lapButton {
+    background-color: var(--button-bg-lap);
+    color: var(--primary-bg);
+}
+#lapButton:hover:enabled {
+    background-color: var(--button-hover-lap);
+    transform: translateY(-3px);
+}
+
+
+.controls button:active:enabled {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Pressed effect */
+}
+
+.controls button:disabled {
+    background-color: var(--disabled-bg);
+    color: var(--disabled-text);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.lap-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 35px;
+    max-height: 250px; /* Taller lap list */
+    overflow-y: auto;
+    border-top: 1px dashed var(--accent-color-light); /* Dashed separator */
+    padding-top: 15px;
+}
+
+.lap-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.lap-list::-webkit-scrollbar-track {
+    background: var(--primary-bg);
+    border-radius: 10px;
+}
+
+.lap-list::-webkit-scrollbar-thumb {
+    background: var(--accent-color-dark);
+    border-radius: 10px;
+}
+
+.lap-list::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color-medium);
+}
+
+
+.lap-list li {
+    background-color: var(--primary-bg); /* Darker background for lap items */
+    margin-bottom: 10px;
+    padding: 12px 20px;
+    border-radius: 7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Consolas', 'Monaco', monospace; /* Monospaced font for lap times */
+    font-size: 1em;
+    color: var(--text-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.lap-list li span:first-child {
+    font-weight: bold;
+    color: var(--accent-color-light); /* Light blue for lap number */
+    margin-right: 15px;
+}
